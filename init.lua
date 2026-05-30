@@ -6,3 +6,4 @@ require("config.basic-settings")
 
 -- Горячие клавиши
 require("config.mappings")
+

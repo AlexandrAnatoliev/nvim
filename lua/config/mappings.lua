@@ -13,3 +13,11 @@ map('n', '<Leader>h', ':wincmd h<CR>')  -- влево
 map('n', '<Leader>j', ':wincmd j<CR>')  -- вниз
 map('n', '<Leader>k', ':wincmd k<CR>')  -- вверх
 map('n', '<Leader>l', ':wincmd l<CR>')  -- вправо
+  
+-- Автоматическая вставка кавычек и скобочек
+map('i', '(', '()<Left>')
+map('i', '[', '[]<Left>')
+map('i', '{', '{}<Left>')
+map('i', '"', '""<Left>')
+map('i', "'", "''<Left>")
+map('i', '<', '<><Left>')
