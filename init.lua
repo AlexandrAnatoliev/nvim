@@ -1,6 +1,6 @@
 -- Старый конфиг
 vim.cmd('source ~/.config/nvim/init.vim.bak')
-
+ 
 -- Базовые настройки
 require("config.basic-settings")
 
@@ -9,3 +9,7 @@ require("config.mappings")
 
 -- Автоматическое закрытие тегов
 require('plugins.auto-tags')
+
+-- Замена двойных $$ на $
+require('plugins.double2single')
+

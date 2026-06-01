@@ -21,3 +21,7 @@ map('i', "'", "''<Left>")
 
 -- Автоматическое закрытие тегов
 map('i', '>', '<Cmd>lua tag_close()<CR>')
+
+-- Замена двойных $$ на $
+map('n', '<leader>ds', '<Cmd>lua replace_double_to_single("$")<CR>')
+
