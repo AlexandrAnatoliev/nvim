@@ -24,3 +24,9 @@ local lspconfig = require('lspconfig')
 -- После require('lspconfig')
 require('config.lsp')  -- или require('configs.lsp') в зависимости от имени файла/папки
 
+-- В init.lua, после всех require, но до загрузки completion
+local pack_path = vim.fn.stdpath('config') .. '/pack/plugins/start'
+for _, name in ipairs(vim.fn.readdir(pack_path)) do
+    vim.opt.runtimepath:append(pack_path .. '/' .. name)
+end
+require('config/completion')

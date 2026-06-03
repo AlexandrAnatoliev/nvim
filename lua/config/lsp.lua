@@ -33,6 +33,8 @@ if is_new then
         filetypes = { 'php' },
         root_markers = { '.git', 'composer.json' },
         settings = {},
+        -- внутри vim.lsp.config.phpactor
+        capabilities = require('cmp_nvim_lsp').default_capabilities(),
     }
     vim.lsp.enable('phpactor')
     setup_lsp_attach()
@@ -62,6 +64,7 @@ else
         on_attach = on_attach,
         filetypes = { 'php' },
         root_dir = lspconfig.util.root_pattern('.git', 'composer.json'),
+        capabilities = require('cmp_nvim_lsp').default_capabilities(),
         init_options = {
             ["language_server_phpstan.enabled"] = false,
             ["language_server_psalm.enabled"] = false,
