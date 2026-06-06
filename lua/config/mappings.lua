@@ -1,27 +1,28 @@
 vim.g.mapleader = ' '
--- Функция-обёртка для удобства
-local function map(mode, lhs, rhs, opts)
-  opts = opts or {}
-  opts.noremap = true   -- защита от рекурсии
-  opts.silent = true    -- не выводить лишние сообщения
-  vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
-end
+
 -- переключение между окнами
-map('n', '<Leader>h', ':wincmd h<CR>')  -- влево
-map('n', '<Leader>j', ':wincmd j<CR>')  -- вниз
-map('n', '<Leader>k', ':wincmd k<CR>')  -- вверх
-map('n', '<Leader>l', ':wincmd l<CR>')  -- вправо
+vim.keymap.set('n', '<Leader>h', '<C-w>h',
+              { silent = true })  -- влево
+vim.keymap.set('n', '<Leader>j', '<C-w>j',
+              { silent = true })  -- вниз
+vim.keymap.set('n', '<Leader>k', '<C-w>k',
+              { silent = true })  -- вверх
+vim.keymap.set('n', '<Leader>l', '<C-w>l',
+              { silent = true })  -- вправо
 
 -- Автоматическая вставка кавычек и скобочек
-map('i', '(', '()<Left>')
-map('i', '[', '[]<Left>')
-map('i', '{', '{}<Left>')
-map('i', '"', '""<Left>')
-map('i', "'", "''<Left>")
+vim.keymap.set('i', '(', '()<Left>')
+vim.keymap.set('i', '[', '[]<Left>')
+vim.keymap.set('i', '{', '{}<Left>')
+vim.keymap.set('i', '"', '""<Left>')
+vim.keymap.set('i', "'", "''<Left>")
 
 -- Автоматическое закрытие тегов
-map('i', '>', '<Cmd>lua tag_close()<CR>')
+vim.keymap.set('i', '>', function() tag_close() end,
+              { silent = true }) 
 
 -- Замена двойных $$ на $
-map('n', '<leader>ds', '<Cmd>lua replace_double_to_single("$")<CR>')
+vim.keymap.set('n', '<leader>ds',
+    function() replace_double_to_single('$') end,
+    { silent = true }) 
 
