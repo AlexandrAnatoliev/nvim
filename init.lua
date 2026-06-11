@@ -10,6 +10,9 @@ require('plugins.auto-tags')
 -- Замена двойных $$ на $
 require('plugins.double2single')
 
+-- Подключаю словари для автодополнения
+require('plugins.keywordsAutocomplete')
+
 -- Подключаем плагин lspconfig
 -- Эта строка сообщает Neovim, где искать lua-модули.
 vim.opt.runtimepath:append(vim.fn.stdpath('config') .. '/pack/plugins/start/nvim-lspconfig')
