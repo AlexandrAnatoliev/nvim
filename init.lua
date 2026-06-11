@@ -10,19 +10,8 @@ require('plugins.auto-tags')
 -- Замена двойных $$ на $
 require('plugins.double2single')
 
--- Добавить один файл
--- vim.opt.dictionary:append("~/.config/nvim/dicts/lua_dict.txt")
-
--- Или сразу несколько через запятую
--- vim.opt.dictionary:prepend("~/.dicts/tech.txt,~/.dicts/names.txt")
-
--- vim.opt.complete:append("k")   -- 'k' включает источник dictionary
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "lua",
-  callback = function()
-    vim.opt_local.dictionary:append("~/.config/nvim/dicts/lua_dict.txt")
-  end,
-})
+-- Подключаю словари для автодополнения
+require('plugins.dicts')
 
 -- Подключаем плагин lspconfig
 -- Эта строка сообщает Neovim, где искать lua-модули.
