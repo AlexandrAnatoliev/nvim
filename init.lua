@@ -11,7 +11,7 @@ require('plugins.auto-tags')
 require('plugins.double2single')
 
 -- Подключаю словари для автодополнения
-require('plugins.dicts')
+require('plugins.keywordsAutocomplete')
 
 -- Подключаем плагин lspconfig
 -- Эта строка сообщает Neovim, где искать lua-модули.
