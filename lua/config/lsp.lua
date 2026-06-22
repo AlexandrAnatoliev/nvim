@@ -18,11 +18,11 @@ local function setup_lsp_keymaps()
         silent = true
       }
 
-      -- Переходы к определению
+      -- Переход к определению
       vim.keymap.set(
         'n', 'gd', vim.lsp.buf.definition, opts)
 
-      -- Переходы к объявлению
+      -- Переход к объявлению
       vim.keymap.set(
         'n', 'gD', vim.lsp.buf.declaration, opts)
 
@@ -36,6 +36,10 @@ local function setup_lsp_keymaps()
         'n', 'gy', vim.lsp.buf.type_definition,
         opts)
 
+      -- Показать все использования
+      vim.keymap.set(
+        'n', 'gr', vim.lsp.buf.references, opts)
+      
       -- Показать сигнатуру функции (аргументы) 
       -- во всплывающем окне
       vim.keymap.set(
@@ -51,10 +55,6 @@ local function setup_lsp_keymaps()
         'n', '<leader>rn', vim.lsp.buf.rename,
         opts)
 
-      -- Показать все использования
-      vim.keymap.set(
-        'n', 'gr', vim.lsp.buf.references, opts)
-      
       -- Поиск символа по рабочему пространству
       vim.keymap.set(
         'n', '<leader>ws', 
