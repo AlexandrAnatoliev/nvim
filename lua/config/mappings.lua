@@ -26,3 +26,9 @@ vim.keymap.set('n', '<leader>ds',
     function() replace_double_to_single('$') end,
     { silent = true }) 
 
+-- Переход к маппингам
+vim.keymap.set(
+  'n', '<Leader>m',
+  ':e ~/.config/nvim/README.md<CR>',
+  { silent = true })
+
