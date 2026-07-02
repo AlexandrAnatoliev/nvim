@@ -1,4 +1,6 @@
-if arg and arg[1] == "start" then
+local M = {}
+
+function M.start_timer()
   local current_dir = debug.getinfo(1, "S").source
   local current_dir = string.match(current_dir, "^@(.+)/[^/]+$")
 
@@ -18,3 +20,5 @@ if arg and arg[1] == "start" then
   file:write(start_time)
   file:close()
 end
+
+return M
