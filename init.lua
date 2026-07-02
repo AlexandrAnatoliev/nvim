@@ -1,6 +1,5 @@
 -- init.lua — точка входа конфигурации Neovim
-
--- 1. Добавляем все плагины из pack/plugins/start в runtimepath
+---1. Добавляем все плагины из pack/plugins/start в runtimepath
 
 local pack_path = vim.fn.stdpath('config') .. '/pack/plugins/start'
 for _, name in ipairs(vim.fn.readdir(pack_path)) do
@@ -23,3 +22,4 @@ require('config.completion')
 require('plugins.auto-tags')
 require('plugins.double2single')
 require('plugins.keywordsAutocomplete')
+require('plugins.timer')
