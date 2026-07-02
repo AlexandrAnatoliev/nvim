@@ -11,3 +11,9 @@ vim.api.nvim_create_autocmd("UIEnter", {
   end,
   once = true -- Чтобы срабатывало только один раз за сессию
 })
+
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  callback = function()
+    timer_module.stop_timer()
+  end
+})
