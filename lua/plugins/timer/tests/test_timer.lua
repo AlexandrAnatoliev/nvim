@@ -1,16 +1,12 @@
 -- test_timer.lua
 local lu = require("luaunit")   -- найдёт ./luaunit.lua
+local timer = require("src.Timer")
 
 -- Тестовый класс (по соглашению имя должно начинаться с Test)
-TestMath = {}
+TestTimer = {}
 
-function TestMath:testAddition()
-    lu.assertEquals(2 + 2, 4)
+function TestTimer:testNormalizeTime()
+  lu.assertEquals(timer.normalize_time(123), "123")
 end
-
-function TestMath:testSubtraction()
-    lu.assertEquals(5 - 3, 2)
-end
-
 -- Запуск всех тестов
 os.exit(lu.LuaUnit.run())

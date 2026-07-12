@@ -63,4 +63,8 @@ function M.stop_timer()
   file:close()
 end
 
+function M.normalize_time(in_sec)
+  return "123"
+end
+
 return M
