@@ -29,7 +29,8 @@ function M.start_timer()
   end
 
   if start and stop then
-    print("past session:", stop - start, "sec")
+    local time = M.normalize_time(stop - start)
+    print("past session:", time)
   end
 
   local file, err = io.open(start_file_path, "w")
@@ -61,6 +62,17 @@ function M.stop_timer()
 
   file:write(stop_time)
   file:close()
+end
+
+--- Преобразует время в секундах в читаемый строковый формат.
+-- @param in_sec (number) Количество секунд (целое >= 0)
+-- @return (string) Отформатированная строка вида "00 h 02 m 03 s"
+-- @usage print(normalize_time(123)) --> "00 h 02 m 03 s"
+function M.normalize_time(in_sec)
+  local hour = math.floor(in_sec / 3600)
+  local min =  math.floor((in_sec % 3600) / 60)
+  local sec = in_sec % 60
+  return string.format("%02.0f h %02.0f m %02.0f s", hour, min, sec)
 end
 
 return M
