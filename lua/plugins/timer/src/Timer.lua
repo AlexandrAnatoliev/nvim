@@ -29,7 +29,8 @@ function M.start_timer()
   end
 
   if start and stop then
-    print("past session:", stop - start, "sec")
+    local time = M.normalize_time(stop - start)
+    print("past session:", time)
   end
 
   local file, err = io.open(start_file_path, "w")
