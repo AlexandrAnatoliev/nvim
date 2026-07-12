@@ -63,12 +63,15 @@ function M.stop_timer()
   file:close()
 end
 
+--- Преобразует время в секундах в читаемый строковый формат.
+-- @param in_sec (number) Количество секунд (целое >= 0)
+-- @return (string) Отформатированная строка вида "00 h 02 m 03 s"
+-- @usage print(normalize_time(123)) --> "00 h 02 m 03 s"
 function M.normalize_time(in_sec)
-  local hour = string.format("%02.0f", math.floor(in_sec / 3600))
-  local min = string.format("%02.0f", math.floor((in_sec % 3600) / 60))
-  local sec = string.format("%02.0f", math.floor(in_sec % 60))
-  local answer = hour .. " h " .. min .. " m " .. sec .. " s"
-  return answer
+  local hour = math.floor(in_sec / 3600)
+  local min =  math.floor((in_sec % 3600) / 60)
+  local sec = in_sec % 60
+  return string.format("%02.0f h %02.0f m %02.0f s", hour, min, sec)
 end
 
 return M
