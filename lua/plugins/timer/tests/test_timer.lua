@@ -6,7 +6,7 @@ local timer = require("src.Timer")
 TestTimer = {}
 
 function TestTimer:testNormalizeTime()
-  lu.assertEquals(timer.normalize_time(123), "123")
+  lu.assertEquals(timer.normalize_time(123), "00 h 02 m 03 s")
 end
 -- Запуск всех тестов
 os.exit(lu.LuaUnit.run())

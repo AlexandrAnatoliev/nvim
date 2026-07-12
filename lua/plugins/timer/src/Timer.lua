@@ -64,7 +64,11 @@ function M.stop_timer()
 end
 
 function M.normalize_time(in_sec)
-  return "123"
+  local hour = string.format("%02.0f", math.floor(in_sec / 3600))
+  local min = string.format("%02.0f", math.floor((in_sec % 3600) / 60))
+  local sec = string.format("%02.0f", math.floor(in_sec % 60))
+  local answer = hour .. " h " .. min .. " m " .. sec .. " s"
+  return answer
 end
 
 return M
