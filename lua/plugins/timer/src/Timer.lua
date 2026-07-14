@@ -87,7 +87,7 @@ function M.get_time(file_path)
     file:close()
     time = tonumber(content)
   end
-  return time
+  return time or -1
 end
 
 return M
