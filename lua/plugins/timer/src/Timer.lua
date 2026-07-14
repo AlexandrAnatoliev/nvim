@@ -75,4 +75,19 @@ function M.normalize_time(in_sec)
   return string.format("%02.0f h %02.0f m %02.0f s", hour, min, sec)
 end
 
+--- Возвращает время в секундах, записанное в файл
+-- @param file_path (string) Путь до файла
+-- @return (number) Записанное время в секундах (целое >= 0)
+-- @usage get_time("start_time.txt") --> 123
+function M.get_time(file_path)
+  local file = io.open(file_path, "r")
+  local time = -1
+  if file then
+    local content = file:read("*a")
+    file:close()
+    time = tonumber(content)
+  end
+  return time
+end
+
 return M
