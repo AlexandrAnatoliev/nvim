@@ -13,5 +13,12 @@ function TestTimer:testGetTime()
   lu.assertEquals(timer.get_time("invalid/path.txt"), -1)
 end
 
+-- Прверяет, что функция возращает осмысленный путь (не пустую строку)
+function TestTimer:testGetCurrentDir()
+    local dir = timer.get_current_dir()
+    lu.assertIsString(dir)
+    lu.assertNotEquals(dir, "")
+end
+
 -- Запуск всех тестов
 os.exit(lu.LuaUnit.run())

@@ -14,19 +14,8 @@ function M.start_timer()
   local start_file_path = current_dir .. "/../data/start_time.txt"
   local stop_file_path = current_dir .. "/../data/stop_time.txt"
 
-  local file = io.open(start_file_path, "r")
-  if file then
-    local content = file:read("*a")     -- всё содержимое как строка
-    file:close()
-    start = tonumber(content)
-  end
-
-  local file = io.open(stop_file_path, "r")
-  if file then
-    local content = file:read("*a")     -- всё содержимое как строка
-    file:close()
-    stop = tonumber(content)
-  end
+  local start = M.get_time(start_file_path)
+  local stop = M.get_time(stop_file_path)
 
   if start and stop then
     local time = M.normalize_time(stop - start)
@@ -67,7 +56,7 @@ end
 --- Преобразует время в секундах в читаемый строковый формат.
 -- @param in_sec (number) Количество секунд (целое >= 0)
 -- @return (string) Отформатированная строка вида "00 h 02 m 03 s"
--- @usage print(normalize_time(123)) --> "00 h 02 m 03 s"
+-- @usage print(M.normalize_time(123)) --> "00 h 02 m 03 s"
 function M.normalize_time(in_sec)
   local hour = math.floor(in_sec / 3600)
   local min =  math.floor((in_sec % 3600) / 60)
@@ -78,7 +67,7 @@ end
 --- Возвращает время в секундах, записанное в файл
 -- @param file_path (string) Путь до файла
 -- @return (number) Записанное время в секундах (целое >= 0)
--- @usage get_time("start_time.txt") --> 123
+-- @usage print(M.get_time("start_time.txt")) --> 123
 function M.get_time(file_path)
   local file = io.open(file_path, "r")
   local time = -1
@@ -88,6 +77,19 @@ function M.get_time(file_path)
     time = tonumber(content)
   end
   return time or -1
+end
+
+--- Возвращает путь до текущей директории в виде строки
+-- @return (string) Путь до текущей директории
+-- @usage print(M.get_current_dir()) --> "/home/user/project/src"
+function M.get_current_dir()
+  local src = debug.getinfo(1, "S").source
+  local dir = string.match(src, "^@(.+)/[^/]+$")
+
+  if not dir or dir == "" then
+    dir = "."
+  end
+  return dir
 end
 
 return M
