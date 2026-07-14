@@ -17,19 +17,10 @@ function M.start_timer()
 end
 
 function M.stop_timer()
-  local stop_time = os.time()
-
   local current_dir = M.get_current_dir()
   local stop_file_path = current_dir .. "/../data/stop_time.txt"
 
-  local file, err = io.open(stop_file_path, "w")
-  if not file then
-    print("Ошибка при открытии файла" .. err)
-    return
-  end
-
-  file:write(stop_time)
-  file:close()
+  M.write_time(stop_file_path, os.time())
 end
 
 --- Преобразует время в секундах в читаемый строковый формат.
