@@ -1,8 +1,6 @@
 local M = {}
 
 function M.start_timer()
-  local start_time = os.time()
-
   local current_dir = M.get_current_dir()
   local start_file_path = current_dir .. "/../data/start_time.txt"
   local stop_file_path = current_dir .. "/../data/stop_time.txt"
@@ -15,14 +13,7 @@ function M.start_timer()
     print("past session:", time)
   end
 
-  local file, err = io.open(start_file_path, "w")
-  if not file then
-    print("Ошибка при открытии файла" .. err)
-    return
-  end
-
-  file:write(start_time)
-  file:close()
+  M.write_time(start_file_path, os.time())
 end
 
 function M.stop_timer()
@@ -65,6 +56,20 @@ function M.get_time(file_path)
     time = tonumber(content)
   end
   return time or -1
+end
+
+--- Записывает в файл время в секундах
+-- @param file_path (string) Путь до файла
+-- @param time (number) Записываемое время (целое >= 0)
+-- @usage M.write_time("start_time.txt", 123)
+function M.write_time(file_path, time)
+  local file, err = io.open(file_path, "w")
+  if not file then
+    print("Ошибка при открытии файла" .. err)
+    return
+  end
+  file:write(time)
+  file:close()
 end
 
 --- Возвращает путь до текущей директории в виде строки
