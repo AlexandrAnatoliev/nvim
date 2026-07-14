@@ -8,10 +8,8 @@ function M.start_timer()
   local start = M.get_time(start_file_path)
   local stop = M.get_time(stop_file_path)
 
-  if start and stop then
-    local time = M.normalize_time(stop - start)
-    print("past session:", time)
-  end
+  local time = M.normalize_time(stop - start)
+  print("past session:", time)
 
   M.write_time(start_file_path, os.time())
 end
