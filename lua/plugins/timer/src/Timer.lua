@@ -77,4 +77,12 @@ function M.get_current_dir()
   return dir
 end
 
+function M.get_file_mtime(path)
+  local cmd = 'stat -c %Y "' .. path .. '"'
+  local handle = io.popen(cmd)
+  local result = handle:read("*a")
+  handle:close()
+  return tonumber(result)
+end
+
 return M
