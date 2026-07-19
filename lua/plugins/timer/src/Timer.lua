@@ -8,13 +8,13 @@ function M.start_timer()
 
   local start = M.get_time(start_file_path)
   local stop = M.get_time(stop_file_path)
-  local day = M.get_time(day_file_path)
-
-  local time = M.normalize_time(stop - start)
-  print("past session:", time)
+  local day = M.get_time(day_file_path) + stop - start
 
   M.write_time(start_file_path, os.time())
-  M.write_time(day_file_path, day + stop - start)
+  M.write_time(day_file_path, day)
+
+  local today = M.normalize_time(day)
+  print("Today:", today)
 end
 
 function M.stop_timer()
