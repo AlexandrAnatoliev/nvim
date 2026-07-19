@@ -4,14 +4,26 @@ function M.start_timer()
   local current_dir = M.get_current_dir()
   local start_file_path = current_dir .. "/../data/start_time.txt"
   local stop_file_path = current_dir .. "/../data/stop_time.txt"
+  local day_file_path = current_dir .. "/../data/day_time.txt"
 
   local start = M.get_time(start_file_path)
   local stop = M.get_time(stop_file_path)
 
-  local time = M.normalize_time(stop - start)
-  print("past session:", time)
+  local ts = M.get_file_mtime(day_file_path)
+  local today_date = os.date("*t").day
+  local file_date = tonumber(os.date("%d", ts))
+
+  local day = M.get_time(day_file_path) + stop - start
+
+  if file_date ~= today_date then
+    day = 0
+  end
 
   M.write_time(start_file_path, os.time())
+  M.write_time(day_file_path, day)
+
+  local today = M.normalize_time(day)
+  print("Today:", today)
 end
 
 function M.stop_timer()
@@ -72,6 +84,18 @@ function M.get_current_dir()
     dir = "."
   end
   return dir
+end
+
+--- Возвращает время изменения файла
+-- @param path (string) Путь до файла
+-- @return (number) Время изменения файла
+-- @usage print(M.get_file_mtime(test_file)) --> 1784454117
+function M.get_file_mtime(path)
+  local cmd = 'stat -c %Y "' .. path .. '"'
+  local handle = io.popen(cmd)
+  local result = handle:read("*a")
+  handle:close()
+  return tonumber(result)
 end
 
 return M

@@ -42,5 +42,27 @@ function TestTimer:testWriteTime()
     lu.assertEquals(read_time, test_time, "Записано неверное время")
 end
 
+function TestTimer:testGetFileMtime()
+  local test_file = "temp_test_time.txt"
+  local test_time = 12345
+
+  -- Гарантируем, что файла нет
+  os.remove(test_file)
+
+  -- Запись
+    timer.write_time(test_file, test_time)
+
+  -- Проверяем, что файл создан
+  local file = io.open(test_file, "r")
+  lu.assertNotNil(file, "Файл не создан после записи")
+
+  local ts = timer.get_file_mtime(test_file)
+  local today = os.date("*t").day
+  local file_time = tonumber(os.date("%d", ts))
+  lu.assertEquals(today, file_time)
+  file:close()
+  os.remove(test_file)  -- очистка
+end
+
 -- Запуск всех тестов
 os.exit(lu.LuaUnit.run())
