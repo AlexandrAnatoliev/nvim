@@ -1,9 +1,10 @@
-# Плагин для подсчета времени последней сессии работы nvim
-version 0.1.0
+# Плагин для подсчета времени работы nvim
+version 0.2.0
 
 #### Структура папок
  ```
 ├── data
+│   ├── day_time.txt
 │   ├── start_time.txt
 │   └── stop_time.txt
 ├── init.lua
@@ -23,9 +24,9 @@ require('plugins.timer')
 
 #### Использование
 
-При заходе в nvim выводит временя последней сессии
+При заходе в nvim выводит время работы за сутки
 ```
 Run timer
-past session: 00 h 05 m 31 s
+Today: 00 h 05 m 31 s
 Press ENTER or type command to continue    
 ```
