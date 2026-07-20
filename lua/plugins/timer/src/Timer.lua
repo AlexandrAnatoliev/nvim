@@ -2,9 +2,14 @@ local M = {}
 
 function M.start_timer()
   local current_dir = M.get_current_dir()
-  local start_file_path = current_dir .. "/../data/start_time.txt"
-  local stop_file_path = current_dir .. "/../data/stop_time.txt"
-  local day_file_path = current_dir .. "/../data/day_time.txt"
+  local start_file_path = current_dir 
+    .. "/../data/start_time.txt"
+  local stop_file_path = current_dir 
+    .. "/../data/stop_time.txt"
+  local day_file_path = current_dir 
+    .. "/../data/day_time.txt"
+  local average_file_path = current_dir 
+    .. "/../data/average_time.txt"
 
   local start = M.get_time(start_file_path)
   local stop = M.get_time(stop_file_path)
@@ -13,22 +18,30 @@ function M.start_timer()
   local today_date = os.date("*t").day
   local file_date = tonumber(os.date("%d", ts))
 
-  local day = M.get_time(day_file_path) + stop - start
+  local day = M.get_time(day_file_path) 
+    + stop - start
+  local average = M.get_time(average_file_path) 
+    + math.floor((stop - start) / 30)
 
   if file_date ~= today_date then
     day = 0
+    average = math.floor((average * 29) / 30)
   end
 
   M.write_time(start_file_path, os.time())
   M.write_time(day_file_path, day)
+  M.write_time(average_file_path, average)
 
   local today = M.normalize_time(day)
+  local average_str = M.normalize_time(average)
   print("Today:", today)
+  print("Average:", average_str)
 end
 
 function M.stop_timer()
   local current_dir = M.get_current_dir()
-  local stop_file_path = current_dir .. "/../data/stop_time.txt"
+  local stop_file_path = current_dir 
+    .. "/../data/stop_time.txt"
 
   M.write_time(stop_file_path, os.time())
 end
