@@ -18,8 +18,13 @@ vim.keymap.set('i', '"', '""<Left>')
 vim.keymap.set('i', "'", "''<Left>")
 
 -- Автоматическое закрытие тегов
-vim.keymap.set('i', '>', function() tag_close() end,
-              { silent = true }) 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "html",
+  callback = function()
+    vim.keymap.set('i', '>', function() tag_close() end,
+             { silent = true }) 
+  end
+})
 
 -- Замена двойных $$ на $
 vim.keymap.set('n', '<leader>ds',
