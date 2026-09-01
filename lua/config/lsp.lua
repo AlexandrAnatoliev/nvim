@@ -129,7 +129,19 @@ vim.lsp.config.phpactor = {
 -- Включаем phpactor
 vim.lsp.enable('phpactor')
 
+-- Настройка сервера clangd для C/C++
+vim.lsp.config.clangd = {
+  cmd = { 'clangd' },
+  filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
+  root_markers = { '.git', 'compile_commands.json', 'compile_flags.txt' },
+  settings = {},
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+}
+
+-- Включаем clangd
+vim.lsp.enable('clangd')
+
 -- Включаем клавиши для всех LSP-серверов
 setup_lsp_keymaps()
-print("LSP: vim.lsp.config (phpactor)")
+print("LSP: vim.lsp.config (phpactor, clangd)")
 
