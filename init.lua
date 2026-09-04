@@ -1,4 +1,7 @@
 -- init.lua — точка входа конфигурации Neovim
+
+require("config.lazy")
+
 ---1. Добавляем все плагины из pack/plugins/start в runtimepath
 
 local pack_path = vim.fn.stdpath('config') .. '/pack/plugins/start'
