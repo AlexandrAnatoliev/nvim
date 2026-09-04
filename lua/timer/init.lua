@@ -1,5 +1,5 @@
 -- Подключаем наш модуль один раз
-local timer_module = require("plugins.timer.src.Timer") 
+local timer_module = require("timer.src.Timer") 
 -- Обратите внимание: путь зависит от того, указана ли папка timer в runtimepath.
 -- Если нет, используйте require("Timer"), положив файл в .../lua/Timer.lua
 
