@@ -17,12 +17,5 @@ return {
         }
       }
     },
-    keymap = {
-      ["<C-Space>"] = { "show" },
-      ["<C-n>"]     = { "select_next" },
-      ["<C-p>"]     = { "select_prev" },
-      ["<CR>"]      = { "accept" },
-      ["<C-e>"]     = { "cancel" },
-    },
   },
 }
