@@ -16,6 +16,8 @@ vim.keymap.set('i', '[', '[]<Left>')
 vim.keymap.set('i', '{', '{}<Left>')
 vim.keymap.set('i', '"', '""<Left>')
 vim.keymap.set('i', "'", "''<Left>")
+vim.keymap.set('i', "`", "``<Left>")
+vim.keymap.set('i', "<", "<><Left>")
 
 -- Автоматическое закрытие тегов
 vim.api.nvim_create_autocmd("FileType", {
