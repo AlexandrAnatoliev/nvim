@@ -2,9 +2,11 @@ return {
   "saghen/blink.cmp",
   dependencies = { "saghen/blink.lib" },
   opts = {
+    keymap = { preset = "default"},
+    signature = { enabled = true },
     fuzzy = { implementation = "lua" },
     sources = {
-      default = { "buffer", "path" },
+      default = { "lsp", "path", "snippets","buffer" },
       providers = {
         buffer = {
           opts = {
