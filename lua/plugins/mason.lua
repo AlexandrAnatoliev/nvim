@@ -3,7 +3,7 @@ return {
   opts = {
     ensure_installed = {
       "clangd",
-      -- "lua_ls",
+      "lua_ls",
     },
     automatic_enable = true,
   },
