@@ -1,3 +1,4 @@
+-- lspconfig.lua
 return {
   'neovim/nvim-lspconfig',
   dependencies = { 'hrsh7th/cmp-nvim-lsp' },
@@ -23,5 +24,26 @@ return {
     })
 
     vim.lsp.enable('clangd') 
+
+    -- Настройка lua_ls для работы с Neovim
+    vim.lsp.config('lua_ls', {
+      settings = {
+        Lua = {
+          runtime = {
+            version = 'LuaJIT', -- Neovim использует LuaJIT
+          },
+          diagnostics = {
+            globals = { 'vim' }, -- Убирает предупреждение о глобальной `vim`
+          },
+          workspace = {
+            -- Подключает API Neovim для автодополнения
+            library = vim.api.nvim_get_runtime_file('', true),
+          },
+        },
+      },
+    })
+
+    vim.lsp.enable('lua_ls')
+
   end,
 }
